@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container-fluid">
+        <h1>{{ block('title') }}</h1>
+
+        {% block show_content %}{% endblock %}
+
+        {% block back_link %}{% endblock %}
+
+        {% block edit_link %}{% endblock %}
+
+        {% block delete_form %}{% endblock %}
+    </div>
+{% endblock %}

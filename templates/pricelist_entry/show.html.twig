@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}PricelistEntry{% endblock %}
+
+{% block body %}
+    <h1>PricelistEntry</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ pricelist_entry.id }}</td>
+            </tr>
+            <tr>
+                <th>Pages</th>
+                <td>{{ pricelist_entry.pages }}</td>
+            </tr>
+            <tr>
+                <th>Copies</th>
+                <td>{{ pricelist_entry.copies }}</td>
+            </tr>
+            <tr>
+                <th>Price</th>
+                <td>{{ pricelist_entry.price }}</td>
+            </tr>
+            <tr>
+                <th>TimeToProduce</th>
+                <td>{{ pricelist_entry.timeToProduce }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('pricelist_entry_index') }}">back to list</a>
+
+    <a href="{{ path('pricelist_entry_edit', {'id': pricelist_entry.id}) }}">edit</a>
+
+    {{ include('pricelist_entry/_delete_form.html.twig') }}
+{% endblock %}

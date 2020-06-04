@@ -1,0 +1,58 @@
+{% extends 'base/show.html.twig' %}
+
+{% block title %}{{ product.name }}{% endblock %}
+
+{% block back_link %}
+    <a href="{{ path('product_index') }}">back to list</a>
+{% endblock %}
+
+{% block edit_link %}
+    <a href="{{ path('product_edit', {'id': product.id}) }}">edit</a>
+{% endblock %}
+
+{% block show_content %}
+    <input id="adjuster" type="number" step=".5" value="100">
+
+    <div class="row">
+        {% for pricelistGroup in product.pricelistEntriesMultiDim %}
+            <div class="col-6">
+                <h3>{{ pricelistGroup.material }} {{ pricelistGroup.format }}, {{ pricelistGroup.pages }}-paged</h3>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Material</th>
+                        <th>Format</th>
+                        <th class="text-right">Pages</th>
+                        <th class="text-right">Copies</th>
+                        <th class="text-right">Price</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for pricelistEntry in pricelistGroup.data %}
+                        <tr>
+                            <td>{{ pricelistEntry.material.name }}</td>
+                            <td>{{ pricelistEntry.format.name }}</td>
+                            <td class="text-right">{{ pricelistEntry.pages }}</td>
+                            <td class="text-right">{{ pricelistEntry.copies }}</td>
+                            <td class="text-right"><span class="price" data-price="{{ pricelistEntry.price}}">€ {{ pricelistEntry.price|price }}</span></td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(document).on("change, mouseup, keyup, input", "#adjuster", function () {
+            let multiplicator = this.value;
+            $('.price').each(function () {
+                let $this = $(this);
+                $this.text((($this.data('price') * (multiplicator/100)) / 1000).toLocaleString('de-at', { style: 'currency', currency: 'EUR' }));
+            });
+        });
+    </script>
+{% endblock %}

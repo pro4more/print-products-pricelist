@@ -1,0 +1,34 @@
+{% extends 'base/index.html.twig' %}
+
+{% block title %}PricelistEntry index{% endblock %}
+
+{% block new_link %}{{ path('pricelist_entry_new') }}{% endblock %}
+
+{% block table_headers %}
+    <th>Id</th>
+    <th>Pages</th>
+    <th>Copies</th>
+    <th>Price</th>
+    <th>TimeToProduce</th>
+    <th>actions</th>
+{% endblock %}
+
+{% block table_rows %}
+    {% for pricelist_entry in pricelist_entries %}
+        <tr>
+            <td>{{ pricelist_entry.id }}</td>
+            <td>{{ pricelist_entry.pages }}</td>
+            <td>{{ pricelist_entry.copies }}</td>
+            <td>{{ pricelist_entry.price }}</td>
+            <td>{{ pricelist_entry.timeToProduce }}</td>
+            <td>
+                <a href="{{ path('pricelist_entry_show', {'id': pricelist_entry.id}) }}">show</a>
+                <a href="{{ path('pricelist_entry_edit', {'id': pricelist_entry.id}) }}">edit</a>
+            </td>
+        </tr>
+    {% else %}
+        <tr>
+            <td colspan="6">no records found</td>
+        </tr>
+    {% endfor %}
+{% endblock %}

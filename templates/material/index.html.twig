@@ -1,0 +1,28 @@
+{% extends 'base/index.html.twig' %}
+
+{% block title %}Material index{% endblock %}
+
+{% block new_link %}{{ path('material_new') }}{% endblock %}
+
+{% block table_headers %}
+    <th>Id</th>
+    <th>Name</th>
+    <th>actions</th>
+{% endblock %}
+
+{% block table_rows %}
+    {% for material in materials %}
+        <tr>
+            <td>{{ material.id }}</td>
+            <td>{{ material.name }}</td>
+            <td>
+                <a href="{{ path('material_show', {'id': material.id}) }}">show</a>
+                <a href="{{ path('material_edit', {'id': material.id}) }}">edit</a>
+            </td>
+        </tr>
+    {% else %}
+        <tr>
+            <td colspan="3">no records found</td>
+        </tr>
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New AvailableFormat{% endblock %}
+
+{% block body %}
+    <h1>Create new AvailableFormat</h1>
+
+    {{ include('available_format/_form.html.twig') }}
+
+    <a href="{{ path('available_format_index') }}">back to list</a>
+{% endblock %}

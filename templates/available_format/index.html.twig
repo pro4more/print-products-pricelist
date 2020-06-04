@@ -1,0 +1,32 @@
+{% extends 'base/index.html.twig' %}
+
+{% block title %}AvailableFormat index{% endblock %}
+
+{% block new_link %}{{ path('available_format_new') }}{% endblock %}
+
+{% block table_headers %}
+    <th>Id</th>
+    <th>Name</th>
+    <th>Width</th>
+    <th>Height</th>
+    <th>actions</th>
+{% endblock %}
+
+{% block table_rows %}
+    {% for available_format in available_formats %}
+        <tr>
+            <td>{{ available_format.id }}</td>
+            <td>{{ available_format.name }}</td>
+            <td>{{ available_format.width }}</td>
+            <td>{{ available_format.height }}</td>
+            <td>
+                <a href="{{ path('available_format_show', {'id': available_format.id}) }}">show</a>
+                <a href="{{ path('available_format_edit', {'id': available_format.id}) }}">edit</a>
+            </td>
+        </tr>
+    {% else %}
+        <tr>
+            <td colspan="5">no records found</td>
+        </tr>
+    {% endfor %}
+{% endblock %}

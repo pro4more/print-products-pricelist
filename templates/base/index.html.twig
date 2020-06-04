@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container-fluid">
+        <h1>{{ block('title') }}</h1>
+
+        <a href="{{ block('new_link') }}">Create new</a>
+        <br>
+        <br>
+
+        <table class="table">
+            <thead>
+            <tr>
+                {{ block('table_headers') }}
+            </tr>
+            </thead>
+            <tbody>
+                {{ block('table_rows') }}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
